@@ -1,13 +1,14 @@
-var http = require('http');
-var port = 3000;
+const express = require('express');
+const app = express();
+const port = 3000;
 
+app.set('views', 'views');
+app.set('vie engine', 'hbs');
+app.use(express.static('public'));
 
-var requestHandler = function(request, response ){
-    console.log(request.url);
-    response.end("Helllo from node web server");
-}
+app.get('/',function (request, response){
+    response.render('home',{name: 'John Doe'});
+});
 
-var server = http.createServer(requestHandler);
-server.listen(port);
-
-console.log('Node started on port 3000')
+app.listen(port);
+console.log('server is listerning on port 3000');
